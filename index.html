@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>測測你的品牌全球化 DNA ✦ Amazon 全球開店</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  /* ===== Amazon CI =====
+     Squid Ink #232F3E（主深色）／ Smile Orange #FF9900（品牌橘）
+     字體優先 Amazon Ember（內部環境可用），對外 fallback 至系統與 Noto Sans TC  */
+  :root{
+    --squid:#232F3E;       /* Amazon Squid Ink */
+    --squid2:#37475A;      /* 深灰藍（Amazon 次層）*/
+    --bg:#232F3E;
+    --bg2:#37475A;
+    --card:#ffffff;
+    --ink:#0F1B2D;
+    --ink2:#5A6B7B;
+    --brand:#FF9900;       /* Amazon Smile Orange */
+    --brand-d:#E47911;     /* Amazon 深橘（hover/字）*/
+    --accent:#146EB4;      /* Amazon Link Blue */
+    --good:#067D62;
+    --line:#E3E8EF;
+    --shadow:0 12px 34px rgba(35,47,62,.22);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:"Amazon Ember","Noto Sans TC","PingFang TC","Microsoft JhengHei",Arial,system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:radial-gradient(900px 500px at 50% -10%, #2c3a4d 0%, var(--bg) 45%, var(--bg2) 100%);
+    min-height:100%;
+    display:flex;align-items:flex-start;justify-content:center;
+    padding:18px;
+  }
+  .app{
+    width:100%;max-width:520px;position:relative;z-index:1;
+  }
+  /* 漂浮的世界元素（趣味背景） */
+  .sky{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .sky span{position:absolute;font-size:26px;opacity:.38;animation:float 14s ease-in-out infinite;filter:saturate(1.25) drop-shadow(0 4px 8px rgba(0,0,0,.18))}
+  .sky span.ball{opacity:.6}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-26px) rotate(12deg)}}
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    animation:rise .45s cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
+  .pad{padding:26px 22px}
+  .brandbar{
+    display:flex;align-items:center;gap:9px;
+    padding:14px 20px;border-bottom:1px solid var(--line);
+    font-weight:900;letter-spacing:.3px;color:var(--squid);font-size:15px;
+  }
+  /* Amazon logo */
+  .amzlogo{height:22px;width:auto;flex:0 0 auto;display:block;margin-top:5px}
+  .bdivider{width:1px;height:18px;background:var(--line);flex:0 0 auto;margin:0 2px}
+  .brandbar small{font-weight:500;color:var(--ink2);margin-left:auto;letter-spacing:0;font-size:11px}
+
+  /* 進度條 */
+  .progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:10px;position:relative}
+  .progress > i{display:block;height:100%;width:0;border-radius:99px;
+    background:linear-gradient(90deg,var(--brand),#ffb84d,var(--brand-d));background-size:200% 100%;
+    transition:width .45s cubic-bezier(.2,.8,.2,1);animation:shimmer 2s linear infinite}
+  @keyframes shimmer{to{background-position:200% 0}}
+  .ptext{font-size:11.5px;color:var(--ink2);margin-bottom:18px;display:flex;justify-content:space-between}
+  .ptext b{color:var(--brand-d)}
+
+  h1{font-size:27px;line-height:1.3;margin-bottom:12px;letter-spacing:-.3px}
+  h1 .hl{color:var(--brand-d);position:relative;white-space:nowrap}
+  h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:9px;background:rgba(255,153,0,.28);z-index:-1;border-radius:4px}
+  .lead{color:var(--ink2);font-size:15px;line-height:1.75;margin-bottom:22px}
+  .qnum{color:var(--brand-d);font-weight:900;font-size:13px;letter-spacing:1px;margin-bottom:8px}
+  .qtitle{font-size:20px;line-height:1.5;margin-bottom:20px;font-weight:700;color:var(--squid)}
+
+  .opt{
+    display:flex;align-items:center;gap:12px;
+    border:2px solid var(--line);border-radius:14px;
+    padding:15px 16px;margin-bottom:12px;cursor:pointer;
+    transition:transform .15s, border-color .15s, background .15s, box-shadow .15s;
+    font-size:15.5px;line-height:1.45;background:#fff;position:relative;
+    animation:optin .35s ease backwards;
+  }
+  .opt:nth-child(1){animation-delay:.02s}.opt:nth-child(2){animation-delay:.08s}
+  .opt:nth-child(3){animation-delay:.14s}.opt:nth-child(4){animation-delay:.2s}
+  .opt:nth-child(5){animation-delay:.26s}.opt:nth-child(6){animation-delay:.32s}
+  @keyframes optin{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+  .opt:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 6px 16px rgba(255,153,0,.18)}
+  .opt .k{
+    flex:0 0 28px;height:28px;border-radius:9px;background:#f0f4f8;color:var(--ink2);
+    display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;transition:.15s;
+  }
+  .opt.sel{border-color:var(--brand);background:#fff7ec;transform:translateY(-1px)}
+  .opt.sel .k{background:var(--brand);color:#fff;transform:scale(1.08)}
+  .opt.sel::after{content:"✓";position:absolute;right:15px;color:var(--brand);font-weight:900;font-size:18px;animation:pop .25s ease}
+  @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+
+  .btn{
+    display:block;width:100%;border:none;border-radius:14px;cursor:pointer;
+    padding:16px;font-size:16px;font-weight:900;color:#fff;position:relative;overflow:hidden;
+    background:linear-gradient(90deg,var(--brand),var(--brand-d));
+    box-shadow:0 8px 20px rgba(255,153,0,.4);transition:.15s;font-family:inherit;
+  }
+  .btn::before{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);
+    transform:skewX(-20deg);animation:sheen 3.2s ease-in-out infinite}
+  @keyframes sheen{0%,60%{left:-120%}100%{left:140%}}
+  .btn.ghost::before,.btn.accent::before{display:none}
+  .btn:active{transform:translateY(1px) scale(.995)}
+  .btn[disabled]{opacity:.4;cursor:not-allowed;box-shadow:none}
+  .btn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line);box-shadow:none}
+  .btn.accent{background:linear-gradient(90deg,var(--accent),#0f4f86);box-shadow:0 8px 18px rgba(20,110,180,.3)}
+  .row{display:flex;gap:10px;margin-top:8px}
+  .row .btn{margin:0}
+
+  /* 結果頁 */
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff7ec;color:var(--brand-d);border:1px solid #ffe2b8;
+    padding:7px 14px;border-radius:99px;font-weight:800;font-size:13px;margin-bottom:14px;
+  }
+  .dna-emoji{font-size:58px;line-height:1;margin-bottom:6px;display:inline-block;animation:bounceIn .7s cubic-bezier(.2,1.4,.4,1)}
+  @keyframes bounceIn{0%{transform:scale(0) rotate(-25deg);opacity:0}60%{transform:scale(1.18) rotate(8deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+  .dna-name{font-size:28px;font-weight:900;margin-bottom:10px;color:var(--squid);
+    background:linear-gradient(90deg,var(--squid),var(--brand-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  #confetti{position:fixed;inset:0;width:100%;height:100%;z-index:50;pointer-events:none}
+  .dna-desc{color:var(--ink2);font-size:15px;line-height:1.75;margin-bottom:20px}
+  canvas{display:block;margin:6px auto 4px}
+  .scorelist{margin:14px 0 6px}
+  .scorerow{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:13.5px}
+  .scorerow .nm{flex:0 0 78px;color:var(--ink2)}
+  .scorerow .bar{flex:1;height:9px;background:var(--line);border-radius:99px;overflow:hidden}
+  .scorerow .bar > i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),#3a8fd0)}
+  .scorerow .vl{flex:0 0 34px;text-align:right;font-weight:700;color:var(--ink)}
+  .recos{background:#f7f9fc;border:1px solid var(--line);border-radius:14px;padding:16px 16px 6px;margin:18px 0}
+  .recos h3{font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .reco{display:flex;gap:10px;margin-bottom:12px;font-size:14px;line-height:1.6;color:var(--ink)}
+  .reco .ic{flex:0 0 22px;height:22px;border-radius:7px;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+
+  .cta-box{background:linear-gradient(160deg,#13293d,#1d3a57);color:#fff;border-radius:16px;padding:22px;margin-top:6px}
+  .cta-box h2{font-size:20px;margin-bottom:8px}
+  .cta-box p{color:#c7d6e6;font-size:14px;line-height:1.7;margin-bottom:16px}
+
+  /* 表單 */
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:13.5px;font-weight:700;margin-bottom:6px;color:var(--ink)}
+  .field label .req{color:#e23b3b}
+  .field input,.field select{
+    width:100%;padding:13px 14px;border:2px solid var(--line);border-radius:12px;
+    font-size:15px;font-family:inherit;color:var(--ink);background:#fff;transition:.15s;
+  }
+  .field input:focus,.field select:focus{outline:none;border-color:var(--accent)}
+  .hint{font-size:11.5px;color:var(--ink2);line-height:1.55;margin-top:6px}
+  .hint b{color:var(--brand-d)}
+  .gift{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(135deg,#fff7ec,#ffeccf);
+    border:1px solid #ffd9a0;border-radius:14px;padding:14px 15px;margin-bottom:14px}
+  .gift-ic{font-size:30px;line-height:1;flex:0 0 auto;animation:wiggle 2.4s ease-in-out infinite}
+  @keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+  .gift-tx{font-size:13px;line-height:1.6;color:var(--squid)}
+  .gift-tx b{display:block;font-size:14.5px;margin-bottom:4px;color:var(--brand-d)}
+  .gift-tx u{text-decoration-color:var(--brand)}
+  /* 報告預覽（眼見為憑） */
+  .peek{margin:2px 0 20px}
+  .peek-cap{font-size:12px;color:var(--ink2);margin:0 0 8px;display:flex;align-items:center;gap:6px}
+  .peek-cap b{color:var(--squid)}
+  .peek-tag{background:var(--squid);color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:99px;letter-spacing:.3px}
+  .peek-scroll{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .peek-scroll::-webkit-scrollbar{height:6px}
+  .peek-scroll::-webkit-scrollbar-thumb{background:#cdd6e0;border-radius:99px}
+  .peek-card{flex:0 0 82%;scroll-snap-align:center;border:1px solid var(--line);border-radius:12px;overflow:hidden;
+    box-shadow:0 4px 14px rgba(35,47,62,.12);background:#fff;position:relative}
+  .peek-card img{display:block;width:100%;height:auto}
+  .peek-card .pl{position:absolute;left:8px;bottom:8px;background:rgba(35,47,62,.86);color:#fff;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:7px}
+  .peek-hint{font-size:11px;color:var(--ink2);text-align:center;margin-top:2px}
+  /* 折疊式報告預覽（結果頁，不影響留資率） */
+  .proof{margin:0 0 16px}
+  .proof summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+    background:#F7F9FC;border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+    font-size:13.5px;font-weight:700;color:var(--squid);transition:.15s}
+  .proof summary::-webkit-details-marker{display:none}
+  .proof summary:hover{border-color:var(--brand);background:#fff7ec}
+  .proof summary .arw{margin-left:auto;color:var(--brand-d);font-size:12px;transition:.2s}
+  .proof[open] summary .arw{transform:rotate(180deg)}
+  .proof summary .vtag{background:var(--good);color:#fff;font-size:10px;font-weight:800;padding:2px 7px;border-radius:99px}
+  .proof-body{padding:12px 2px 4px}
+  .proof-body .pnote{font-size:11.5px;color:var(--ink2);text-align:center;margin-top:6px;line-height:1.55}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--ink2);line-height:1.6;margin:6px 0 16px}
+  .consent input{flex:0 0 18px;width:18px;height:18px;margin-top:2px}
+  .err{color:#e23b3b;font-size:12.5px;margin-top:-6px;margin-bottom:10px;display:none}
+  .hide{display:none !important}
+  .center{text-align:center}
+  .muted{color:var(--ink2);font-size:12px;line-height:1.6;text-align:center;margin-top:14px}
+  .spin{width:20px;height:20px;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;display:inline-block;animation:sp .8s linear infinite;vertical-align:middle}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  .thanks-emoji{font-size:60px;text-align:center;margin-bottom:8px}
+</style>
+</head>
+<body>
+<!-- 漂浮世界元素背景 -->
+<div class="sky" id="sky" aria-hidden="true"></div>
+<canvas id="confetti"></canvas>
+
+<div class="app">
+  <div class="card">
+    <div class="brandbar">
+      <img class="amzlogo" src="amazon-logo.png" alt="Amazon" />
+      <span class="bdivider"></span>
+      ⚽ 品牌出海賽 · 全球化 DNA
+    </div>
+
+    <!-- ========== 歡迎頁 ========== -->
+    <section id="screen-intro" class="pad">
+      <h1>這個賽季，<br>換你的品牌<span class="hl">站上世界舞台</span> ⚽</h1>
+      <p class="lead">🌍 全球正瘋一場跨國盛事，而真正的主場，是數億海外消費者的購物車。<br><br>花 <b>2 分鐘</b>、踢進 <b>7 球（7 題）</b>，測出你的品牌全球化 DNA，立即解鎖你的出海戰力分析與下一步戰術建議。</p>
+      <div class="gift">
+        <div class="gift-ic">🎁</div>
+        <div class="gift-tx">
+          <b>完成測驗，免費領取一份大禮</b>
+          <span>為你品牌<u>量身打造的專屬美國市場進入報告</u>，1–2 個工作天內寄到你的 Email</span>
+        </div>
+      </div>
+
+      <!-- 報告預覽：眼見為憑 -->
+      <div class="peek">
+        <p class="peek-cap"><span class="peek-tag">真實報告節錄</span> <b>專屬報告長這樣</b>　👉 滑動看看</p>
+        <div class="peek-scroll">
+          <div class="peek-card"><img src="report_pricing.png" alt="競品定價地圖" loading="lazy"><span class="pl">競品定價地圖</span></div>
+          <div class="peek-card"><img src="report_benchmark.png" alt="同業在美表現對標" loading="lazy"><span class="pl">同業在美表現對標</span></div>
+          <div class="peek-card"><img src="report_market.png" alt="美國市場機會分析" loading="lazy"><span class="pl">美國市場機會分析</span></div>
+        </div>
+        <p class="peek-hint">＊以上為實際交付報告之節錄，品牌資訊已去識別化處理</p>
+      </div>
+
+      <button class="btn" onclick="start()">⚽ 開球！測我的出海戰力</button>
+      <p class="muted">2 分鐘 · 7 題 · 免費 · 由 亞馬遜全球開店團隊提供</p>
+    </section>
+
+    <!-- ========== 題目頁 ========== -->
+    <section id="screen-quiz" class="pad hide">
+      <div class="progress"><i id="bar"></i></div>
+      <div class="ptext"><span id="ptextL"></span><span id="ptextR"></span></div>
+      <div id="qnum" class="qnum"></div>
+      <div id="qtitle" class="qtitle"></div>
+      <div id="opts"></div>
+      <div class="row">
+        <button class="btn ghost" id="backBtn" style="flex:0 0 90px" onclick="prev()">上一題</button>
+        <button class="btn" id="nextBtn" onclick="next()" disabled>下一題</button>
+      </div>
+    </section>
+
+    <!-- ========== 結果頁 ========== -->
+    <section id="screen-result" class="pad hide">
+      <div class="center">
+        <span class="badge">⚽ 你的品牌出海戰力 DNA</span>
+        <div class="dna-emoji" id="rEmoji"></div>
+        <div class="dna-name" id="rName"></div>
+      </div>
+      <p class="dna-desc" id="rDesc"></p>
+
+      <canvas id="radar" width="300" height="240"></canvas>
+      <div class="scorelist" id="scorelist"></div>
+
+      <div class="recos">
+        <h3>🎯 給你的 3 個出海戰術</h3>
+        <div id="recoList"></div>
+      </div>
+
+      <!-- 折疊式報告預覽：眼見為憑，預設收合不影響填表 -->
+      <details class="proof">
+        <summary><span class="vtag">真實節錄</span> 這不是罐頭報告 — 點我看真實報告長什麼樣 <span class="arw">▾</span></summary>
+        <div class="proof-body">
+          <div class="peek-scroll">
+            <div class="peek-card"><img src="report_pricing.png" alt="競品定價地圖" loading="lazy"><span class="pl">競品定價地圖</span></div>
+            <div class="peek-card"><img src="report_benchmark.png" alt="同業在美表現對標" loading="lazy"><span class="pl">同業在美表現對標</span></div>
+            <div class="peek-card"><img src="report_market.png" alt="美國市場機會分析" loading="lazy"><span class="pl">美國市場機會分析</span></div>
+          </div>
+          <p class="pnote">＊以上為實際交付報告之節錄，品牌資訊已去識別化處理。<br>每位完成測驗者，都會收到依自家官網量身打造的專屬版本。</p>
+        </div>
+      </details>
+
+      <div class="cta-box">
+        <h2 id="ctaTitle"></h2>
+        <p id="ctaText"></p>
+
+        <!-- 留資表單 -->
+        <form id="leadForm" onsubmit="return submitLead(event)">
+          <div class="field">
+            <label>姓名 / 公司 <span class="req">*</span></label>
+            <input type="text" id="f_name" placeholder="王小明 / 小明國際" required />
+          </div>
+          <div class="field">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" id="f_email" placeholder="you@brand.com" required />
+          </div>
+          <div class="field">
+            <label>手機 <span class="req">*</span></label>
+            <input type="tel" id="f_phone" placeholder="09xx-xxx-xxx" required />
+          </div>
+          <div class="field">
+            <label>產品品類 <span class="req">*</span></label>
+            <select id="f_category" required>
+              <option value="" disabled selected>請選擇你的主要品類…</option>
+              <option value="美妝保養">美妝保養</option>
+              <option value="健康保健">健康保健 / 保健食品</option>
+              <option value="食品飲料">食品飲料</option>
+              <option value="家居生活">家居生活 / 廚房</option>
+              <option value="3C電子配件">3C / 電子配件</option>
+              <option value="服飾配件">服飾 / 配件</option>
+              <option value="運動戶外">運動 / 戶外</option>
+              <option value="母嬰玩具">母嬰 / 玩具</option>
+              <option value="寵物用品">寵物用品</option>
+              <option value="美容工具">美容工具 / 個人護理</option>
+              <option value="工業五金">工業 / 五金 / B2B</option>
+              <option value="其他">其他</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>官網 / 商品連結 <span class="req">*</span></label>
+            <input type="text" id="f_website" inputmode="url" placeholder="your-brand.com（不用打 http://）" required />
+            <div class="hint">📊 我們會以此為你產出<b>專屬</b>美國市場進入報告，請填可看到產品的連結（官網、蝦皮、商品頁皆可）。直接打網址即可，不用加 http://。</div>
+          </div>
+          <label class="consent">
+            <input type="checkbox" id="f_consent" required />
+            <span>我同意亞馬遜全球開店團隊及其合作夥伴，為提供全球化諮詢、專屬市場報告與相關服務之目的，蒐集、處理及利用我所填寫的聯絡資訊與官網連結，並與我聯繫。我已了解可隨時要求停止聯繫。</span>
+          </label>
+          <div class="err" id="formErr">請完整填寫必填欄位並勾選同意。</div>
+          <button class="btn" type="submit" id="submitBtn">🏆 領取我的出海戰力報告 →</button>
+        </form>
+      </div>
+      <p class="muted">＊本結果為趣味性品牌自評，僅供參考，若想進一步瞭解建立全球品牌商機，歡迎聯繫 <a href="mailto:tw-rd@amazon.com" style="color:var(--accent);font-weight:700">tw-rd@amazon.com</a>。</p>
+    </section>
+
+    <!-- ========== 感謝頁 ========== -->
+    <section id="screen-thanks" class="pad center hide">
+      <div class="thanks-emoji">🏆</div>
+      <h1>進球得分！</h1>
+      <p class="lead">我們正在依你的官網，為你產出<b>專屬</b>的美國市場進入報告，將於 <b>1–2 個工作天</b>寄到你的 Email，請留意收信 📩</p>
+      <a class="btn accent" id="finalCta" href="https://sell.amazon.com/" target="_blank" rel="noopener">⚽ 了解 Amazon 全球開店 →</a>
+      <p class="muted">把你的出海戰力結果截圖，揪更多隊友一起上場 🌍</p>
+    </section>
+
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   設定區：部署前只需改這兩個值
+   ============================================================ */
+// 1) 貼上你的 Google Apps Script Web App 網址（見 SETUP.md）。留空則只在本機測試、不送出。
+const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbzoDLLBJgRjKQZT0SAo_KzSHPO-zycszknSXJnDtvBQU6O5T61HMtMezx0VDX6G523x/exec";
+// 2) 感謝頁最終 CTA 連結（Amazon 全球開店註冊或活動落地頁）
+const FINAL_CTA_URL = "https://sell.amazon.com/";
+
+/* ============================================================
+   題庫與計分
+   每個選項 s 物件 = 對各維度加的分（0~100）
+   維度：product 產品力 / brand 品牌力 /
+        market 市場認知 / marketing 行銷力 / ambition 企圖心
+   ============================================================ */
+const DIMS = [
+  {key:"product",  name:"產品力"},
+  {key:"brand",    name:"品牌力"},
+  {key:"market",   name:"市場認知"},
+  {key:"marketing",name:"行銷力"},
+  {key:"ambition", name:"企圖心"},
+];
+
+const QUESTIONS = [
+  {
+    t:"你的產品最讓你驕傲的地方是？",
+    o:[
+      {label:"獨家設計或有專利，別人模仿不來", s:{product:100}},
+      {label:"品質頂規，客人用過就回購",        s:{product:75}},
+      {label:"CP 值高、價格有競爭力",            s:{product:50}},
+      {label:"還在尋找產品定位",                s:{product:20}},
+    ]
+  },
+  {
+    t:"你的產品目前主要的銷售通路是？",
+    o:[
+      {label:"已在海外電商平台銷售",          s:{market:100}},
+      {label:"已做海外 B2B／外銷通路",        s:{market:65}},
+      {label:"以自家官網銷售為主",            s:{market:45}},
+      {label:"主要在台灣（實體＋電商通路）",  s:{market:25}},
+    ]
+  },
+  {
+    t:"你有自己的品牌嗎？",
+    o:[
+      {label:"有，已註冊商標＋完整品牌識別", s:{brand:100}},
+      {label:"有品牌，正努力建立品牌力中",   s:{brand:65}},
+      {label:"沒有，以代工為主",             s:{brand:30}},
+      {label:"還沒有品牌",                   s:{brand:10}},
+    ]
+  },
+  {
+    t:"你對目標消費者的了解程度？",
+    o:[
+      {label:"很清楚目標客群、痛點與市場規模", s:{market:100}},
+      {label:"大概知道是哪些人",               s:{market:60}},
+      {label:"主要憑感覺",                     s:{market:30}},
+      {label:"完全還沒研究",                   s:{market:10}},
+    ]
+  },
+  {
+    t:"你的行銷素材（圖片、文案、影片）現況？",
+    o:[
+      {label:"有英文＋多語，視覺完整專業",     s:{marketing:100}},
+      {label:"中文完整，英文素材有限",         s:{marketing:60}},
+      {label:"素材零散、不夠系統化",           s:{marketing:35}},
+      {label:"幾乎沒有行銷素材",               s:{marketing:12}},
+    ]
+  },
+  {
+    t:"未來半年，你對拓展海外的企圖心是？",
+    o:[
+      {label:"積極拓展，海外是未來一年的重點營收來源", s:{ambition:100}},
+      {label:"想試水溫、看看反應",                     s:{ambition:65}},
+      {label:"先穩固台灣，海外之後再說",               s:{ambition:35}},
+      {label:"還在觀望，沒有具體規劃",                 s:{ambition:15}},
+    ]
+  },
+  // Q7：需求路由題（不計分，作為 lead 分流 + SSP 派工依據）
+  {
+    t:"若要開拓海外市場，你目前最需要協助的是？",
+    routing:true,
+    o:[
+      {label:"國際物流",       s:{}, tag:"國際物流"},
+      {label:"產品上架",       s:{}, tag:"產品上架"},
+      {label:"行銷推廣",       s:{}, tag:"行銷推廣"},
+      {label:"商標保護",       s:{}, tag:"商標保護"},
+      {label:"品牌打造",       s:{}, tag:"品牌打造"},
+      {label:"營運團隊建置",   s:{}, tag:"營運團隊"},
+    ]
+  },
+];
+
+/* ============================================================
+   DNA 類型
+   ============================================================ */
+const DNA = {
+  native:{
+    emoji:"🚀", name:"全球化原生種",
+    desc:"產品、品牌、營運、企圖心樣樣到位——你的品牌天生就是為世界舞台而生。現在缺的不是準備，而是「正式啟動」的那一步。",
+    recos:[
+      "你已具備出海體質，建議直接啟動 Amazon 全球開店、卡住先機。",
+      "善用品牌優勢註冊 Amazon 品牌註冊（Brand Registry），保護並放大你的品牌。",
+      "規劃首波旺季備貨與廣告策略，讓上線即見成效。",
+    ],
+    ctaTitle:"你已經準備好了，就差開始 🚀",
+    ctaText:"留下聯絡方式，我們將在 1–2 個工作天內，將為你量身打造的專屬美國市場進入報告寄給你。若有問題，歡迎與我們聯繫（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
+  },
+  gem:{
+    emoji:"💎", name:"璞玉潛力股",
+    desc:"你的產品實力強勁，是塊真材實料的璞玉——只要補強品牌與營運的最後一哩路，海外市場的爆發力非常可期。",
+    recos:[
+      "你的產品有競爭力，建議搭配合作夥伴補強品牌識別與營運準備。",
+      "及早建立海外行銷素材（英文 Listing、視覺、影片），縮短上線磨合期。",
+      "從 Amazon 起步，用真實市場數據快速驗證並迭代你的產品。",
+    ],
+    ctaTitle:"好產品，值得被世界看見 💎",
+    ctaText:"留下聯絡方式，我們將在 1–2 個工作天內，將為你量身打造的專屬美國市場進入報告寄給你。若有問題，歡迎與我們聯繫（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
+  },
+  hidden:{
+    emoji:"🏰", name:"隱形冠軍",
+    desc:"你在本地市場已經很強，品牌與產品都站得住腳——但世界還沒認識你。每多等一季，就多讓對手一步。",
+    recos:[
+      "你的本地實力是最好的出海本錢，建議盡早評估海外機會成本。",
+      "預約 1:1 全球化諮詢，盤點從本地走向全球的具體路徑。",
+      "用 Amazon 接觸全球數億消費者，把「隱形」變成「全球知名」。",
+    ],
+    ctaTitle:"別讓世界錯過你 🏰",
+    ctaText:"留下聯絡方式，我們將在 1–2 個工作天內，將為你量身打造的專屬美國市場進入報告寄給你。若有問題，歡迎與我們聯繫（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
+  },
+  ready:{
+    emoji:"🌱", name:"蓄勢待發型",
+    desc:"你有滿滿的企圖心，方向也很明確——現在正是把能力一塊塊補齊、蓄積能量準備衝刺的關鍵階段。",
+    recos:[
+      "你的動能很強，建議搭配引導式 onboarding，按部就班建立海外能力。",
+      "優先補強最關鍵的缺口（備貨、素材或品牌），逐步到位。",
+      "領取入門資源包與限時註冊禮，用較低門檻先跨出第一步。",
+    ],
+    ctaTitle:"企圖心，是最稀缺的天賦 🌱",
+    ctaText:"留下聯絡方式，我們將在 1–2 個工作天內，將為你量身打造的專屬美國市場進入報告寄給你。若有問題，歡迎與我們聯繫（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
+  },
+  explorer:{
+    emoji:"🧭", name:"海外探索家",
+    desc:"你正站在全球化旅程的起點。前方是一片廣闊機會——只要方向對了，每一步都算數。",
+    recos:[
+      "建議先從認識海外市場與基本知識開始，建立正確的全球化 mindset。",
+      "索取入門資源包，了解開店、選品與品牌的基礎準備。",
+      "與我們保持聯繫，在準備好時，我們協助你順利踏出第一步。",
+    ],
+    ctaTitle:"每個品牌的全球化，都從這裡開始 🧭",
+    ctaText:"留下聯絡方式，我們將在 1–2 個工作天內，將為你量身打造的專屬美國市場進入報告寄給你。若有問題，歡迎與我們聯繫（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
+  },
+};
+
+/* ============================================================
+   狀態與流程
+   ============================================================ */
+let idx = 0;
+const answers = new Array(QUESTIONS.length).fill(null);
+
+const $ = id => document.getElementById(id);
+function show(screen){
+  ["intro","quiz","result","thanks"].forEach(s=>$("screen-"+s).classList.add("hide"));
+  $("screen-"+screen).classList.remove("hide");
+  window.scrollTo(0,0);
+}
+function start(){ idx=0; renderQ(); show("quiz"); }
+
+const CHEER = ["開球! ⚽","漂亮的第一腳 👍","節奏出來了 ✨","下半場開始","攻勢猛烈 🔥","補時最後衝刺!","PK 決勝!最後一球 🥅"];
+function renderQ(){
+  const q = QUESTIONS[idx];
+  $("bar").style.width = ((idx)/(QUESTIONS.length)*100)+"%";
+  $("ptextL").textContent = CHEER[Math.min(idx, CHEER.length-1)];
+  $("ptextR").innerHTML = `<b>${idx+1}</b> / ${QUESTIONS.length}`;
+  $("qnum").textContent = `Q${idx+1}`;
+  $("qtitle").textContent = q.t;
+  const wrap = $("opts"); wrap.innerHTML="";
+  const keys = ["A","B","C","D","E","F"];
+  q.o.forEach((op,i)=>{
+    const d=document.createElement("div");
+    d.className="opt"+(answers[idx]===i?" sel":"");
+    d.innerHTML=`<span class="k">${keys[i]}</span><span>${op.label}</span>`;
+    d.onclick=()=>{ selectOpt(i); };
+    wrap.appendChild(d);
+  });
+  $("backBtn").style.visibility = idx===0 ? "hidden":"visible";
+  $("nextBtn").textContent = idx===QUESTIONS.length-1 ? "看結果 →":"下一題";
+  $("nextBtn").disabled = answers[idx]===null;
+}
+// 點選項：記錄答案 → 顯示打勾 → 自動跳下一題（最後一題不自動跳，留給使用者按「看結果」）
+let advancing=false;
+function selectOpt(i){
+  if(advancing) return;
+  answers[idx]=i;
+  // 立即重繪以顯示選取狀態與打勾動畫
+  const wrap=$("opts");
+  [...wrap.children].forEach((el,j)=>el.classList.toggle("sel", j===i));
+  $("nextBtn").disabled=false;
+  const isLast = idx===QUESTIONS.length-1;
+  advancing=true;
+  setTimeout(()=>{
+    advancing=false;
+    if(isLast){ computeResult(); show("result"); fireConfetti(); }  // 最後一題：直接出結果
+    else { idx++; renderQ(); }
+  }, 280); // 等打勾動畫跑完
+}
+
+function next(){
+  if(answers[idx]===null) return;
+  if(idx<QUESTIONS.length-1){ idx++; renderQ(); }
+  else { computeResult(); show("result"); fireConfetti(); }
+}
+function prev(){ if(idx>0){ idx--; renderQ(); } }
+
+/* 計分 */
+let scores={}, dnaKey="", routingTag="";
+function computeResult(){
+  // 加總各維度（取該維度被觸及選項的分數；本設計每維度主要由 1~2 題決定）
+  const acc={}, cnt={};
+  DIMS.forEach(d=>{acc[d.key]=0;cnt[d.key]=0;});
+  QUESTIONS.forEach((q,qi)=>{
+    if(q.routing){ routingTag=q.o[answers[qi]].tag; return; }
+    const sObj=q.o[answers[qi]].s;
+    for(const k in sObj){ acc[k]+=sObj[k]; cnt[k]++; }
+  });
+  scores={};
+  DIMS.forEach(d=>{ scores[d.key]= cnt[d.key] ? Math.round(acc[d.key]/cnt[d.key]) : 0; });
+
+  // 分類邏輯
+  const total = Math.round(DIMS.reduce((a,d)=>a+scores[d.key],0)/DIMS.length);
+  const prod=scores.product, brand=scores.brand, market=scores.market, amb=scores.ambition;
+  const ops=scores.marketing;   // 營運/行銷準備度
+
+  if(total>=78){ dnaKey="native"; }
+  else if(market<=40 && (prod>=60||brand>=60)){ dnaKey="hidden"; }          // 本地強、沒走出去
+  else if(prod>=70 && (brand<60||ops<60)){ dnaKey="gem"; }                  // 產品強、品牌/營運待補
+  else if(amb>=70){ dnaKey="ready"; }                                       // 企圖心高
+  else { dnaKey="explorer"; }                                              // 早期
+
+  paintResult();
+}
+
+function paintResult(){
+  const d=DNA[dnaKey];
+  $("rEmoji").textContent=d.emoji;
+  $("rName").textContent=d.name;
+  $("rDesc").textContent=d.desc;
+  $("ctaTitle").textContent=d.ctaTitle;
+  $("ctaText").innerHTML=d.ctaText;
+  // 分數條
+  const sl=$("scorelist"); sl.innerHTML="";
+  DIMS.forEach(dim=>{
+    const v=scores[dim.key];
+    const r=document.createElement("div");
+    r.className="scorerow";
+    r.innerHTML=`<span class="nm">${dim.name}</span><span class="bar"><i style="width:${v}%"></i></span><span class="vl">${v}</span>`;
+    sl.appendChild(r);
+  });
+  // 建議
+  const rl=$("recoList"); rl.innerHTML="";
+  d.recos.forEach((t,i)=>{
+    const r=document.createElement("div");
+    r.className="reco";
+    r.innerHTML=`<span class="ic">${i+1}</span><span>${t}</span>`;
+    rl.appendChild(r);
+  });
+  drawRadar();
+}
+
+/* 雷達圖（純 canvas，不依賴外部套件） */
+function drawRadar(){
+  const c=$("radar"), ctx=c.getContext("2d");
+  const W=c.width, H=c.height, cx=W/2, cy=H/2+6, R=88, n=DIMS.length;
+  ctx.clearRect(0,0,W,H);
+  const ang=i=> -Math.PI/2 + i*2*Math.PI/n;
+  // 網格
+  for(let ring=1; ring<=4; ring++){
+    ctx.beginPath();
+    for(let i=0;i<=n;i++){
+      const r=R*ring/4, a=ang(i%n);
+      const x=cx+r*Math.cos(a), y=cy+r*Math.sin(a);
+      i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle="#e3e8ef"; ctx.lineWidth=1; ctx.stroke();
+  }
+  // 軸線 + 標籤
+  ctx.fillStyle="#486581"; ctx.font="12px 'Noto Sans TC',sans-serif";
+  ctx.textAlign="center"; ctx.textBaseline="middle";
+  DIMS.forEach((d,i)=>{
+    const a=ang(i);
+    ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+R*Math.cos(a), cy+R*Math.sin(a));
+    ctx.strokeStyle="#eef2f6"; ctx.stroke();
+    const lx=cx+(R+18)*Math.cos(a), ly=cy+(R+14)*Math.sin(a);
+    ctx.fillText(d.name, lx, ly);
+  });
+  // 數據多邊形
+  ctx.beginPath();
+  DIMS.forEach((d,i)=>{
+    const r=R*(scores[d.key]/100), a=ang(i);
+    const x=cx+r*Math.cos(a), y=cy+r*Math.sin(a);
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  ctx.closePath();
+  ctx.fillStyle="rgba(255,153,0,.28)";
+  ctx.strokeStyle="#ff9900"; ctx.lineWidth=2;
+  ctx.fill(); ctx.stroke();
+  // 頂點
+  DIMS.forEach((d,i)=>{
+    const r=R*(scores[d.key]/100), a=ang(i);
+    const x=cx+r*Math.cos(a), y=cy+r*Math.sin(a);
+    ctx.beginPath(); ctx.arc(x,y,3,0,7); ctx.fillStyle="#e88b00"; ctx.fill();
+  });
+}
+
+/* UTM：抓 SSP 來源（?utm_source=xxx&utm_medium=xxx&ssp=xxx） */
+function getParams(){
+  const p=new URLSearchParams(location.search);
+  return {
+    ssp: p.get("ssp")||p.get("utm_source")||"direct",
+    medium: p.get("utm_medium")||"",
+    campaign: p.get("utm_campaign")||"ssp-worldstage-2026",
+  };
+}
+
+/* 送出名單到 Google Sheet */
+function submitLead(e){
+  e.preventDefault();
+  const name=$("f_name").value.trim();
+  const email=$("f_email").value.trim();
+  const phone=$("f_phone").value.trim();
+  const category=$("f_category").value;
+  let website=$("f_website").value.trim();
+  const consent=$("f_consent").checked;
+  if(!name||!email||!phone||!category||!website||!consent){ $("formErr").style.display="block"; return false; }
+  // 賣家不用打 http://，這裡自動補上，存進 Sheet 的就是完整可點連結
+  if(website && !/^https?:\/\//i.test(website)){ website = "https://" + website; }
+  $("formErr").style.display="none";
+
+  const btn=$("submitBtn");
+  btn.disabled=true; btn.innerHTML='<span class="spin"></span> 送出中…';
+
+  const prm=getParams();
+  const payload={
+    name, email, phone,
+    interest: "",                 // 已移除「最想了解的主題」題，欄位保留、留空對齊
+    dna: DNA[dnaKey].name,
+    need: routingTag,
+    score_product:scores.product, score_brand:scores.brand, score_supply:"", // 已移除供應鏈題，欄位留空對齊
+    score_market:scores.market, score_marketing:scores.marketing, score_ambition:scores.ambition,
+    ssp: prm.ssp, utm_medium: prm.medium, utm_campaign: prm.campaign,
+    answers: answers.map((a,i)=>QUESTIONS[i].o[a].label).join(" | "),
+    ts: new Date().toISOString(),
+    page: location.href,
+    category: $("f_category").value,            // 產品品類
+    website: website,                           // 官網／商品連結（已自動補 https://，QuickSuite 輸入）
+  };
+
+  $("finalCta").href = FINAL_CTA_URL;
+
+  if(!SHEET_ENDPOINT){
+    // 尚未設定後端：本機測試直接顯示感謝頁
+    console.log("[DEMO] 未設定 SHEET_ENDPOINT，名單內容：", payload);
+    setTimeout(()=>show("thanks"), 600);
+    return false;
+  }
+
+  fetch(SHEET_ENDPOINT,{
+    method:"POST",
+    // no-cors：搭配 Apps Script 最穩，不會被 CORS 擋；無法讀回應，但資料會寫入
+    mode:"no-cors",
+    headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:JSON.stringify(payload),
+  }).then(()=>{ show("thanks"); })
+    .catch(()=>{ show("thanks"); }) // 即使讀不到回應也視為成功（no-cors 特性）
+    .finally(()=>{ btn.disabled=false; btn.innerHTML="🏆 領取我的出海戰力報告 →"; });
+
+  return false;
+}
+
+/* 漂浮的世界元素背景（趣味、低調） */
+function buildSky(){
+  const sky=$("sky"); if(!sky) return;
+  const icons=["⚽","🌍","🏆","🥅","📦","⚽","🌏","⭐","🚩","⚽","✈️","🏆"];
+  const balls=["⚽","🏆","🥅","🚩"]; // 足球主元素：更大更明顯
+  icons.forEach((ic,i)=>{
+    const s=document.createElement("span");
+    s.textContent=ic;
+    const isBall=balls.indexOf(ic)>=0;
+    if(isBall) s.className="ball";
+    s.style.left=(6+i*8.2)%96+"%";
+    s.style.top=(8+(i*37)%82)+"%";
+    s.style.animationDelay=(i*0.7)+"s";
+    s.style.animationDuration=(11+(i%5)*1.6)+"s";
+    s.style.fontSize=(isBall? 40+(i%3)*10 : 22+(i%4)*8)+"px";
+    sky.appendChild(s);
+  });
+}
+
+/* 結果揭曉彩帶（Amazon 配色，純 canvas，自動停止） */
+function fireConfetti(){
+  const cv=$("confetti"); if(!cv) return;
+  const ctx=cv.getContext("2d");
+  cv.width=innerWidth; cv.height=innerHeight;
+  const colors=["#FF9900","#E47911","#232F3E","#146EB4","#FFD18C","#ffffff"];
+  const N=140, parts=[];
+  for(let i=0;i<N;i++){
+    parts.push({
+      x:innerWidth/2 + (i%2?1:-1)*(i%40),
+      y:innerHeight*0.32,
+      vx:(((i*53)%100)/100-0.5)*10,
+      vy:-(4+((i*31)%70)/10),
+      g:0.22+((i*17)%30)/200,
+      s:6+(i%4)*2,
+      rot:((i*29)%360)*Math.PI/180,
+      vr:(((i*13)%100)/100-0.5)*0.4,
+      c:colors[i%colors.length],
+      life:0,
+    });
+  }
+  let frame=0;
+  (function anim(){
+    frame++;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    let alive=false;
+    parts.forEach(p=>{
+      p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; p.life++;
+      if(p.y<cv.height+20){ alive=true; }
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.globalAlpha=Math.max(0,1-p.life/170);
+      ctx.fillStyle=p.c; ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*0.6);
+      ctx.restore();
+    });
+    if(alive && frame<200){ requestAnimationFrame(anim); }
+    else { ctx.clearRect(0,0,cv.width,cv.height); }
+  })();
+}
+
+// 初始：背景 + 感謝頁 CTA 連結
+document.addEventListener("DOMContentLoaded",()=>{
+  buildSky();
+  $("finalCta").href=FINAL_CTA_URL;
+});
+</script>
+</body>
+</html>

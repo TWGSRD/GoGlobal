@@ -1,0 +1,10 @@
+# 機密 / 內部檔案 — 切勿公開上傳
+Dr_Douxi_Amazon_US_Market_Entry_Strategy.pdf
+*.msg
+Code.gs
+SETUP.md
+Amazon_Logo_Squid Ink.png
+
+# 系統檔
+.DS_Store
+Thumbs.db
