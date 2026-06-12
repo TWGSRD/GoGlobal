@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JQYKK4890E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JQYKK4890E');
+</script>
 <title>測測你的品牌全球化 DNA ✦ Amazon 全球開店</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -515,7 +523,10 @@ function show(screen){
   $("screen-"+screen).classList.remove("hide");
   window.scrollTo(0,0);
 }
-function start(){ idx=0; renderQ(); show("quiz"); }
+function start(){
+  idx=0; renderQ(); show("quiz");
+  if(window.gtag){ gtag('event','quiz_start',{campaign:getParams().campaign, ssp:getParams().ssp}); }
+}
 
 const CHEER = ["開球! ⚽","漂亮的第一腳 👍","節奏出來了 ✨","下半場開始","攻勢猛烈 🔥","補時最後衝刺!","PK 決勝!最後一球 🥅"];
 function renderQ(){
