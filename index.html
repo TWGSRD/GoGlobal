@@ -604,6 +604,7 @@ function computeResult(){
 
 function paintResult(){
   const d=DNA[dnaKey];
+  if(window.gtag){ gtag('event','quiz_complete',{dna:d.name, need:routingTag, campaign:getParams().campaign, ssp:getParams().ssp}); }
   $("rEmoji").textContent=d.emoji;
   $("rName").textContent=d.name;
   $("rDesc").textContent=d.desc;
@@ -699,10 +700,13 @@ function submitLead(e){
   if(website && !/^https?:\/\//i.test(website)){ website = "https://" + website; }
   $("formErr").style.display="none";
 
+  const prm=getParams();
+  // GA4：留資成功（最重要的轉換指標）
+  if(window.gtag){ gtag('event','lead_submit',{dna:DNA[dnaKey].name, need:routingTag, category:category, campaign:prm.campaign, ssp:prm.ssp}); }
+
   const btn=$("submitBtn");
   btn.disabled=true; btn.innerHTML='<span class="spin"></span> 送出中…';
 
-  const prm=getParams();
   const payload={
     name, email, phone,
     interest: "",                 // 已移除「最想了解的主題」題，欄位保留、留空對齊
@@ -802,6 +806,11 @@ function fireConfetti(){
 document.addEventListener("DOMContentLoaded",()=>{
   buildSky();
   $("finalCta").href=FINAL_CTA_URL;
+  // GA4：展開報告預覽（只記第一次展開）
+  const proof=document.querySelector(".proof");
+  if(proof){ proof.addEventListener("toggle",function(){
+    if(proof.open && window.gtag){ gtag('event','view_report_sample',{dna:(DNA[dnaKey]||{}).name||"", ssp:getParams().ssp}); }
+  }); }
 });
 </script>
 </body>
