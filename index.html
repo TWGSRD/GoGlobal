@@ -231,7 +231,7 @@
         <div class="gift-ic">🎁</div>
         <div class="gift-tx">
           <b>完成測驗，免費領取一份大禮</b>
-          <span>為你品牌<u>量身打造的專屬美國市場進入報告</u>，1–2 個工作天內寄到你的 Email</span>
+          <span>為你品牌量身打造的<u>出海戰報</u>——從全球最大電商市場「美國」切入，內附專屬市場進入策略，1–2 個工作天內寄到你的 Email</span>
         </div>
       </div>
 
@@ -332,7 +332,7 @@
           <div class="field">
             <label>官網 / 商品連結 <span class="req">*</span></label>
             <input type="text" id="f_website" inputmode="url" placeholder="your-brand.com（不用打 http://）" required />
-            <div class="hint">📊 我們會以此為你產出<b>專屬</b>美國市場進入報告，請填可看到產品的連結（官網、蝦皮、商品頁皆可）。直接打網址即可，不用加 http://。</div>
+            <div class="hint">📊 亞馬遜全球開店團隊會以此為你產出<b>專屬</b>出海戰報，請填可看到產品的連結（官網、蝦皮、商品頁皆可）。直接打網址即可，不用加 http://。</div>
           </div>
           <label class="consent">
             <input type="checkbox" id="f_consent" required />
@@ -349,7 +349,7 @@
     <section id="screen-thanks" class="pad center hide">
       <div class="thanks-emoji">🏆</div>
       <h1>進球得分！</h1>
-      <p class="lead">我們正在依你的官網，為你產出<b>專屬</b>的美國市場進入報告，將於 <b>1–2 個工作天</b>寄到你的 Email，請留意收信 📩</p>
+      <p class="lead">亞馬遜全球開店團隊正在依你的官網，為你產出<b>專屬</b>出海戰報，將於 <b>1–2 個工作天</b>寄到你的 Email，請留意收信 📩</p>
       <a class="btn accent" id="finalCta" href="https://sell.amazon.com/" target="_blank" rel="noopener">⚽ 了解 Amazon 全球開店 →</a>
       <p class="muted">把你的出海戰力結果截圖，揪更多隊友一起上場 🌍</p>
     </section>
@@ -393,10 +393,10 @@ const QUESTIONS = [
   {
     t:"你的產品目前主要的銷售通路是？",
     o:[
-      {label:"已在海外電商平台銷售",          s:{market:100}},
-      {label:"已做海外 B2B／外銷通路",        s:{market:65}},
-      {label:"以自家官網銷售為主",            s:{market:45}},
       {label:"主要在台灣（實體＋電商通路）",  s:{market:25}},
+      {label:"以自家官網銷售為主",            s:{market:45}},
+      {label:"已做海外 B2B／外銷通路",        s:{market:65}},
+      {label:"已在海外電商平台銷售",          s:{market:100}},
     ]
   },
   {
@@ -437,8 +437,10 @@ const QUESTIONS = [
   },
   // Q7：需求路由題（不計分，作為 lead 分流 + SSP 派工依據）
   {
-    t:"若要開拓海外市場，你目前最需要協助的是？",
+    t:"若要開拓海外市場，你預估最需要的協助會是？",
     routing:true,
+    multi:true,
+    max:3,
     o:[
       {label:"國際物流",       s:{}, tag:"國際物流"},
       {label:"產品上架",       s:{}, tag:"產品上架"},
@@ -458,56 +460,51 @@ const DNA = {
     emoji:"🚀", name:"全球化原生種",
     desc:"產品、品牌、營運、企圖心樣樣到位——你的品牌天生就是為世界舞台而生。現在缺的不是準備，而是「正式啟動」的那一步。",
     recos:[
-      "你已具備出海體質，建議直接啟動 Amazon 全球開店、卡住先機。",
-      "善用品牌優勢註冊 Amazon 品牌註冊（Brand Registry），保護並放大你的品牌。",
-      "規劃首波旺季備貨與廣告策略，讓上線即見成效。",
+      "你已具備完整的出海體質，現在最重要的是把握時機，搶下市場先機。建議留下聯繫方式，獲得為你品牌量身打造的出海戰報，並與亞馬遜全球開店聊聊。",
+      "規劃首波重點市場與旺季節奏，讓品牌一開賣就能見到成效。",
     ],
     ctaTitle:"你已經準備好了，就差開始 🚀",
-    ctaText:"留下聯絡方式，我們將在 1–2 個工作天內，將為你量身打造的專屬美國市場進入報告寄給你。若有問題，歡迎與我們聯繫（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
+    ctaText:"留下聯絡方式，亞馬遜全球開店團隊將在 1–2 個工作天內，把為你品牌量身打造的出海戰報寄到你的 Email。若有任何問題，歡迎來信（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
   },
   gem:{
     emoji:"💎", name:"璞玉潛力股",
     desc:"你的產品實力強勁，是塊真材實料的璞玉——只要補強品牌與營運的最後一哩路，海外市場的爆發力非常可期。",
     recos:[
-      "你的產品有競爭力，建議搭配合作夥伴補強品牌識別與營運準備。",
-      "及早建立海外行銷素材（英文 Listing、視覺、影片），縮短上線磨合期。",
-      "從 Amazon 起步，用真實市場數據快速驗證並迭代你的產品。",
+      "你的產品已具競爭力，下一步是補強品牌與營運的最後一哩路。",
+      "及早準備海外市場所需的素材與資源，縮短上線的磨合期。建議留下聯繫方式，獲得為你品牌量身打造的出海戰報，並與亞馬遜全球開店聊聊。",
     ],
     ctaTitle:"好產品，值得被世界看見 💎",
-    ctaText:"留下聯絡方式，我們將在 1–2 個工作天內，將為你量身打造的專屬美國市場進入報告寄給你。若有問題，歡迎與我們聯繫（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
+    ctaText:"留下聯絡方式，亞馬遜全球開店團隊將在 1–2 個工作天內，把為你品牌量身打造的出海戰報寄到你的 Email。若有任何問題，歡迎來信（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
   },
   hidden:{
     emoji:"🏰", name:"隱形冠軍",
     desc:"你在本地市場已經很強，品牌與產品都站得住腳——但世界還沒認識你。每多等一季，就多讓對手一步。",
     recos:[
-      "你的本地實力是最好的出海本錢，建議盡早評估海外機會成本。",
-      "預約 1:1 全球化諮詢，盤點從本地走向全球的具體路徑。",
-      "用 Amazon 接觸全球數億消費者，把「隱形」變成「全球知名」。",
+      "你的本地實力是最好的出海本錢，建議盡早評估走向海外的機會成本。",
+      "及早盤點從本地走向全球的路徑，讓世界認識你的品牌。建議留下聯繫方式，獲得為你品牌量身打造的出海戰報，並與亞馬遜全球開店聊聊。",
     ],
     ctaTitle:"別讓世界錯過你 🏰",
-    ctaText:"留下聯絡方式，我們將在 1–2 個工作天內，將為你量身打造的專屬美國市場進入報告寄給你。若有問題，歡迎與我們聯繫（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
+    ctaText:"留下聯絡方式，亞馬遜全球開店團隊將在 1–2 個工作天內，把為你品牌量身打造的出海戰報寄到你的 Email。若有任何問題，歡迎來信（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
   },
   ready:{
     emoji:"🌱", name:"蓄勢待發型",
     desc:"你有滿滿的企圖心，方向也很明確——現在正是把能力一塊塊補齊、蓄積能量準備衝刺的關鍵階段。",
     recos:[
-      "你的動能很強，建議搭配引導式 onboarding，按部就班建立海外能力。",
-      "優先補強最關鍵的缺口（備貨、素材或品牌），逐步到位。",
-      "領取入門資源包與限時註冊禮，用較低門檻先跨出第一步。",
+      "你的企圖心很強，建議按部就班把海外能力一塊塊建立起來。建議留下聯繫方式，獲得為你品牌量身打造的出海戰報，並與亞馬遜全球開店聊聊。",
+      "優先補強最關鍵的缺口（產品、品牌或營運），讓基礎逐步到位。",
     ],
     ctaTitle:"企圖心，是最稀缺的天賦 🌱",
-    ctaText:"留下聯絡方式，我們將在 1–2 個工作天內，將為你量身打造的專屬美國市場進入報告寄給你。若有問題，歡迎與我們聯繫（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
+    ctaText:"留下聯絡方式，亞馬遜全球開店團隊將在 1–2 個工作天內，把為你品牌量身打造的出海戰報寄到你的 Email。若有任何問題，歡迎來信（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
   },
   explorer:{
     emoji:"🧭", name:"海外探索家",
     desc:"你正站在全球化旅程的起點。前方是一片廣闊機會——只要方向對了，每一步都算數。",
     recos:[
-      "建議先從認識海外市場與基本知識開始，建立正確的全球化 mindset。",
-      "索取入門資源包，了解開店、選品與品牌的基礎準備。",
-      "與我們保持聯繫，在準備好時，我們協助你順利踏出第一步。",
+      "你正站在全球化的起點，建議先從認識海外市場與基本知識開始。建議留下聯繫方式，獲得為你品牌量身打造的出海戰報，並與亞馬遜全球開店聊聊。",
+      "穩紮穩打了解選品、品牌與營運的基礎，為未來踏出第一步做好準備。",
     ],
     ctaTitle:"每個品牌的全球化，都從這裡開始 🧭",
-    ctaText:"留下聯絡方式，我們將在 1–2 個工作天內，將為你量身打造的專屬美國市場進入報告寄給你。若有問題，歡迎與我們聯繫（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
+    ctaText:"留下聯絡方式，亞馬遜全球開店團隊將在 1–2 個工作天內，把為你品牌量身打造的出海戰報寄到你的 Email。若有任何問題，歡迎來信（<a href='mailto:tw-rd@amazon.com' style='color:#9cc4e4;font-weight:700'>tw-rd@amazon.com</a>）。",
   },
 };
 
@@ -535,27 +532,49 @@ function renderQ(){
   $("ptextL").textContent = CHEER[Math.min(idx, CHEER.length-1)];
   $("ptextR").innerHTML = `<b>${idx+1}</b> / ${QUESTIONS.length}`;
   $("qnum").textContent = `Q${idx+1}`;
-  $("qtitle").textContent = q.t;
+  $("qtitle").textContent = q.t + (q.multi ? (q.max ? `（可複選，最多 ${q.max} 項）` : "（可複選）") : "");
   const wrap = $("opts"); wrap.innerHTML="";
   const keys = ["A","B","C","D","E","F"];
+  const cur = answers[idx];
   q.o.forEach((op,i)=>{
     const d=document.createElement("div");
-    d.className="opt"+(answers[idx]===i?" sel":"");
+    const isSel = q.multi ? (Array.isArray(cur) && cur.includes(i)) : (cur===i);
+    d.className="opt"+(isSel?" sel":"");
     d.innerHTML=`<span class="k">${keys[i]}</span><span>${op.label}</span>`;
     d.onclick=()=>{ selectOpt(i); };
     wrap.appendChild(d);
   });
   $("backBtn").style.visibility = idx===0 ? "hidden":"visible";
   $("nextBtn").textContent = idx===QUESTIONS.length-1 ? "看結果 →":"下一題";
-  $("nextBtn").disabled = answers[idx]===null;
+  $("nextBtn").disabled = !isAnswered(idx);
+}
+// 是否已作答：複選題需至少選 1 項
+function isAnswered(i){
+  const a=answers[i];
+  return QUESTIONS[i].multi ? (Array.isArray(a) && a.length>0) : (a!==null);
 }
 // 點選項：記錄答案 → 顯示打勾 → 自動跳下一題（最後一題不自動跳，留給使用者按「看結果」）
 let advancing=false;
 function selectOpt(i){
   if(advancing) return;
-  answers[idx]=i;
-  // 立即重繪以顯示選取狀態與打勾動畫
+  const q=QUESTIONS[idx];
   const wrap=$("opts");
+  // 複選題：toggle 選取，不自動跳題，交給「下一題／看結果」按鈕
+  if(q.multi){
+    let arr = Array.isArray(answers[idx]) ? answers[idx].slice() : [];
+    const pos = arr.indexOf(i);
+    if(pos>=0){ arr.splice(pos,1); }
+    else {
+      if(q.max && arr.length>=q.max){ return; }  // 已達上限，忽略新增
+      arr.push(i);
+    }
+    answers[idx]=arr;
+    [...wrap.children].forEach((el,j)=>el.classList.toggle("sel", arr.includes(j)));
+    $("nextBtn").disabled = arr.length===0;
+    return;
+  }
+  // 單選題：記錄答案 → 顯示打勾 → 自動跳下一題
+  answers[idx]=i;
   [...wrap.children].forEach((el,j)=>el.classList.toggle("sel", j===i));
   $("nextBtn").disabled=false;
   const isLast = idx===QUESTIONS.length-1;
@@ -568,7 +587,7 @@ function selectOpt(i){
 }
 
 function next(){
-  if(answers[idx]===null) return;
+  if(!isAnswered(idx)) return;
   if(idx<QUESTIONS.length-1){ idx++; renderQ(); }
   else { computeResult(); show("result"); fireConfetti(); }
 }
@@ -581,7 +600,11 @@ function computeResult(){
   const acc={}, cnt={};
   DIMS.forEach(d=>{acc[d.key]=0;cnt[d.key]=0;});
   QUESTIONS.forEach((q,qi)=>{
-    if(q.routing){ routingTag=q.o[answers[qi]].tag; return; }
+    if(q.routing){
+      const a=answers[qi];
+      routingTag = Array.isArray(a) ? a.map(i=>q.o[i].tag).join("、") : q.o[a].tag;
+      return;
+    }
     const sObj=q.o[answers[qi]].s;
     for(const k in sObj){ acc[k]+=sObj[k]; cnt[k]++; }
   });
@@ -715,7 +738,7 @@ function submitLead(e){
     score_product:scores.product, score_brand:scores.brand, score_supply:"", // 已移除供應鏈題，欄位留空對齊
     score_market:scores.market, score_marketing:scores.marketing, score_ambition:scores.ambition,
     ssp: prm.ssp, utm_medium: prm.medium, utm_campaign: prm.campaign,
-    answers: answers.map((a,i)=>QUESTIONS[i].o[a].label).join(" | "),
+    answers: answers.map((a,i)=>Array.isArray(a)?a.map(j=>QUESTIONS[i].o[j].label).join("、"):QUESTIONS[i].o[a].label).join(" | "),
     ts: new Date().toISOString(),
     page: location.href,
     category: $("f_category").value,            // 產品品類
